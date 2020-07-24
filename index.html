@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Netlify ReactRouter Params Demo</title>
+
+        <!-- Don't use this in production! install React properly with NPM,
+            these scripts are just for getting the demo working. -->
+        <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+        <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+        <script src="https://unpkg.com/react-router-dom/umd/react-router-dom.min.js"></script>
+        <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    </head>
+    <body>
+        <div id="root"></div>
+        <script type="text/babel">
+            const {BrowserRouter, Route, useParams} = window.ReactRouterDOM
+
+            const Info = () => {
+                let {dogs, cats} = useParams();
+                return <div>There are {dogs || 0} dogs and {cats || 0} cats</div>;
+            }
+
+            const App = () => (
+            <BrowserRouter>
+                <Route  path="/:dogs?/:cats?/"  component={Info}/>
+            </BrowserRouter>)
+
+            ReactDOM.render(<App/>, document.getElementById('root'));
+        </script>
+    </body>
+</html>
